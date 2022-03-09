@@ -1,0 +1,697 @@
+
+body,
+html {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-width: 100%;
+    min-height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+header {
+    background: #0e0a0a;
+    box-shadow: 1px 1px 3px 4px #000000c9;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+}
+
+    header .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    header .logo h1 {
+        margin: 0;
+        color: #e5ff55;
+    }
+
+.money {
+    background: white;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+    border-radius: 40px;
+    padding-right: 20px;
+    background-image: url("/assets/money.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 15px 0px;
+}
+
+span.money-count {
+    font-weight: bold;
+}
+
+.dropdown {
+    position: absolute;
+    background: #585858;
+    border-radius: 20px;
+    margin-top: 10px;
+    visibility: collapse;
+    width: calc(100% - 1.5rem);
+}
+
+    .dropdown.show-dropdown {
+        visibility: visible;
+    }
+
+    .dropdown ul {
+        padding-left: 0px;
+        margin: 0px;
+    }
+
+        .dropdown ul li {
+            line-height: 40px;
+            list-style: none;
+        }
+
+            .dropdown ul li a {
+                color: white;
+                text-decoration: none;
+                text-align: center;
+                display: block;
+            }
+
+            .dropdown ul li + li {
+                border-top: 1px solid #6c6c6c;
+            }
+
+.profile-menu {
+    padding-right: 0.75rem;
+}
+
+.btn-profile {
+    border: 0px;
+    display: flex;
+    align-items: center;
+    border-radius: 40px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin-right: 0.75rem;
+    cursor: pointer;
+}
+
+    .btn-profile img {
+        border-radius: 40px;
+    }
+
+    .btn-profile span {
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.7px;
+    }
+
+.profile-menu {
+    position: relative;
+}
+
+.games-list {
+    padding-left: 30px;
+    padding-right: 30px;
+    max-width: 100%;
+}
+
+    .games-list ul {
+        padding-left: 0px;
+        list-style-type: none;
+        margin: 0px;
+        display: flex;
+        flex-direction: row;
+        -moz-column-gap: 15px;
+        column-gap: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 30px;
+        column-count: 3;
+    }
+
+        .games-list ul li {
+            flex: 1 32%;
+            width: 32%;
+            max-width: 32%;
+        }
+
+            .games-list ul li > a {
+                display: block;
+            }
+
+    .games-list .game-image img {
+        max-width: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        display: table;
+        height: 250px;
+        width: 100%;
+        filter: grayscale(1);
+        transition: all 0.4s;
+    }
+
+    .games-list .game-block {
+        position: relative;
+    }
+
+        .games-list .game-block:hover img {
+            filter: none;
+        }
+
+    .games-list .game-name {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transform: translate(-50%, 0);
+    }
+
+.profile-panel.not-signed {
+    background: white;
+    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    column-gap: 15px;
+    border-radius: 40px;
+}
+
+    .profile-panel.not-signed a {
+        color: black;
+        text-decoration: none;
+    }
+
+button {
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+input {
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+    input[type=submit] {
+        cursor: pointer;
+    }
+
+    input::-moz-placeholder {
+        font-size: 0.85rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.1rem;
+        color: #ccc;
+    }
+
+    input:-ms-input-placeholder {
+        font-size: 0.85rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.1rem;
+        color: #ccc;
+    }
+
+    input::placeholder {
+        font-size: 0.85rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.1rem;
+        color: #ccc;
+    }
+
+
+/**
+ * * Bounce to the left side
+ * */
+
+@-webkit-keyframes bounceLeft {
+    0% {
+        transform: translate3d(100%, -50%, 0);
+    }
+
+    50% {
+        transform: translate3d(-30px, -50%, 0);
+    }
+
+    100% {
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+@keyframes bounceLeft {
+    0% {
+        transform: translate3d(100%, -50%, 0);
+    }
+
+    50% {
+        transform: translate3d(-30px, -50%, 0);
+    }
+
+    100% {
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+
+/**
+ * * Bounce to the left side
+ * */
+
+@-webkit-keyframes bounceRight {
+    0% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    50% {
+        transform: translate3d(calc(100% + 30px), -50%, 0);
+    }
+
+    100% {
+        transform: translate3d(100%, -50%, 0);
+    }
+}
+
+@keyframes bounceRight {
+    0% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    50% {
+        transform: translate3d(calc(100% + 30px), -50%, 0);
+    }
+
+    100% {
+        transform: translate3d(100%, -50%, 0);
+    }
+}
+
+
+/**
+ * * Show Sign Up form
+ * */
+
+@-webkit-keyframes showSignUp {
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes showSignUp {
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+
+/**
+ * * Page background
+ * */
+
+.user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    /* height: 100vh; */
+    /* background: #ccc; */
+    background-size: cover;
+}
+
+.user_options-container {
+    position: relative;
+    width: 80%;
+}
+
+.user_options-text {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: rgba(34, 34, 34, 0.85);
+    border-radius: 3px;
+}
+
+
+/**
+ * * Registered and Unregistered user box and text
+ * */
+
+.user_options-registered,
+.user_options-unregistered {
+    width: 50%;
+    padding: 75px 45px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.user_registered-title,
+.user_unregistered-title {
+    margin-bottom: 15px;
+    font-size: 1.66rem;
+    line-height: 1em;
+}
+
+.user_unregistered-text,
+.user_registered-text {
+    font-size: 0.83rem;
+    line-height: 1.4em;
+}
+
+.user_registered-login,
+.user_unregistered-signup {
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px 30px;
+    color: #fff;
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 0.2rem;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+    .user_registered-login:hover,
+    .user_unregistered-signup:hover {
+        color: rgba(34, 34, 34, 0.85);
+        background-color: #ccc;
+    }
+
+
+/**
+ * * Login and signup forms
+ * */
+
+.user_options-forms {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    width: calc(50% - 30px);
+    min-height: 420px;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transform: translate3d(100%, -50%, 0);
+    transition: transform 0.4s ease-in-out;
+}
+
+    .user_options-forms .user_forms-login {
+        transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    }
+
+    .user_options-forms .forms_title {
+        margin-bottom: 45px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1em;
+        text-transform: uppercase;
+        color: #e8716d;
+        letter-spacing: 0.1rem;
+    }
+
+    .user_options-forms .forms_field:not(:last-of-type) {
+        margin-bottom: 20px;
+    }
+
+    .user_options-forms .forms_field-input {
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        padding: 6px 20px 6px 6px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 300;
+        color: gray;
+        letter-spacing: 0.1rem;
+        transition: border-color 0.2s ease-in-out;
+    }
+
+        .user_options-forms .forms_field-input:focus {
+            border-color: gray;
+        }
+
+    .user_options-forms .forms_buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 35px;
+    }
+
+    .user_options-forms .forms_buttons-forgot {
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.1rem;
+        color: #ccc;
+        text-decoration: underline;
+        transition: color 0.2s ease-in-out;
+    }
+
+        .user_options-forms .forms_buttons-forgot:hover {
+            color: #b3b3b3;
+        }
+
+    .user_options-forms .forms_buttons-action {
+        background-color: #e8716d;
+        border-radius: 3px;
+        padding: 10px 35px;
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .user_options-forms .forms_buttons-action:hover {
+            background-color: #e14641;
+        }
+
+    .user_options-forms .user_forms-signup,
+    .user_options-forms .user_forms-login {
+        position: absolute;
+        top: 70px;
+        left: 40px;
+        width: calc(100% - 80px);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    .user_options-forms .user_forms-signup {
+        transform: translate3d(120px, 0, 0);
+    }
+
+        .user_options-forms .user_forms-signup .forms_buttons {
+            justify-content: flex-end;
+        }
+
+    .user_options-forms .user_forms-login {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+    /**
+ * * Triggers
+ * */
+
+    .user_options-forms.bounceLeft {
+        -webkit-animation: bounceLeft 1s forwards;
+        animation: bounceLeft 1s forwards;
+    }
+
+        .user_options-forms.bounceLeft .user_forms-signup {
+            -webkit-animation: showSignUp 1s forwards;
+            animation: showSignUp 1s forwards;
+        }
+
+        .user_options-forms.bounceLeft .user_forms-login {
+            opacity: 0;
+            visibility: hidden;
+            transform: translate3d(-120px, 0, 0);
+        }
+
+    .user_options-forms.bounceRight {
+        -webkit-animation: bounceRight 1s forwards;
+        animation: bounceRight 1s forwards;
+    }
+
+
+/**
+ * * Responsive 990px
+ * */
+
+@media screen and (max-width: 990px) {
+    .user_options-forms {
+        min-height: 350px;
+    }
+
+        .user_options-forms .forms_buttons {
+            flex-direction: column;
+        }
+
+        .user_options-forms .user_forms-login .forms_buttons-action {
+            margin-top: 30px;
+        }
+
+        .user_options-forms .user_forms-signup,
+        .user_options-forms .user_forms-login {
+            top: 40px;
+        }
+
+    .user_options-registered,
+    .user_options-unregistered {
+        padding: 50px 45px;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0px;
+    background: #0000007a;
+    transition: all .4s;
+    z-index: 10000;
+}
+
+    .modal.show-modal {
+        display: flex;
+    }
+
+fieldset.forms_fieldset {
+    border: 0px;
+}
+
+.profile-menu {
+    color: white;
+}
+
+.btn-profile span {
+    color: white;
+}
+
+button.btn-profile {
+    background: gray;
+}
+
+div#profile-menu {
+    color: white;
+    text-align: ceter;
+}
+
+#profile-menu button.nav-link.btn.btn-link.text-dark {
+    color: white !important;
+    text-align: center;
+    width: 100%;
+}
+
+ul.profile-nr-menu {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 0px;
+}
+
+ul.profile-nr-menu a {
+    color: white !important;
+}
+
+ul.profile-nr-menu a:hover {
+    color: gray !important;
+}
+ul.game-menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    column-gap: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+ul.game-menu a {
+    color: white;
+}
+
+ul.game-menu a:hover {
+    color: yellow;
+}
+
+body {
+    background-size:cover;
+}
+.create-form {
+    display: table;
+    margin-top: 200px;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 20px;
+    background: brown;
+    color: white;
+    width: 50%;
+}
+
+.create-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group a {
+    color: white;
+    text-decoration: underline;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: right;
+}
+.content {
+    margin-top: 106px;
+    color: white;
+    background: black;
+    text-align: center;
+    min-height: calc(100vh - 106px);
+}
+.rooms-list table {
+    width: 100%;
+}
+
+.rooms-list table thead th {
+    padding: 10px 15px;
+    background: red;
+}
+container {
+    background: white;
+    display: block;
+    margin-top: 106px;
+}
+#canvas{
+    max-width:100%;
+    min-width:100%;
+    max-height: 100vh;
+}
